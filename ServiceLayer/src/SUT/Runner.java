@@ -7,7 +7,6 @@ import java.util.List;
 public class Runner {
 
 	public static void main(String[] args) throws URISyntaxException, IOException {
-		// TODO Auto-generated method stub
 		DirectoryServiceLayer dsl = new DirectoryServiceLayer(new DirectoryDAOImpl());
 		List<FileInformation> dirInfos = dsl.GetFilesInDirectory();
 		for (FileInformation info : dirInfos) {

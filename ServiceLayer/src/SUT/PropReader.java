@@ -14,7 +14,6 @@ public class PropReader {
 		
 		if (props == null) {
 			props = new HashMap<String, String>();
-			//InputStream inputStream = null;
 			String propFileName = "config.properties";
 			 
 			try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName)){
