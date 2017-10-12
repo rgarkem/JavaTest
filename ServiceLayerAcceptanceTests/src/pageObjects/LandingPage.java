@@ -4,6 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+/**
+ * The first landing page of the DVLA site 
+ * https://www.gov.uk/get-vehicle-information-from-dvla
+ */
 public class LandingPage extends BasePage{
 
 	private WebElement startButton;

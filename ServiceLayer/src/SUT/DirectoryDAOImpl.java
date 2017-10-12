@@ -9,8 +9,16 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * Concrete implementation of the DirectoryDAO. 
+ * this will be responsible for interacting with the file system 
+ */
 public class DirectoryDAOImpl implements DirectoryDAO {
 
+	/**
+	 * Get the file information, using configured filter for file types. 
+	 * Please check config.properties#filesfilter property for filtered types
+	 */
 	@Override
 	public List<FileInformation> GetFileInformation() throws IOException {
 		String pathString = null;

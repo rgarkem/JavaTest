@@ -1,5 +1,10 @@
 package SUT;
 
+/**
+ * Model for the file information for each file retrieved from the target directory. 
+ *
+ */
+
 public class FileInformation {
 	private String name;
 	private String mimeType;

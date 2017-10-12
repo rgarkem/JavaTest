@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 
+/**
+ * This is a test driver for the extraction logic. Useful for debugging any changes to extraction
+ */
 public class Runner {
 
 	public static void main(String[] args) throws URISyntaxException, IOException {

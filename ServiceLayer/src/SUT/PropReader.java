@@ -6,6 +6,10 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Properties;
 
+/**
+ * Abstraction for reading the properties from the config.properties file
+ * 
+ */
 public class PropReader {
 
 	private HashMap<String, String> props;

@@ -1,5 +1,8 @@
 package SUT;
 
+/**
+ * Model class for information about each vehicle 
+ */
 public class VehicleInformation {
 	private String regNo;
 	private String colour;

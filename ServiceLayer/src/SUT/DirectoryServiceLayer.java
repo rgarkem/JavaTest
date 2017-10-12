@@ -5,6 +5,10 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * This is the Java class which provides directory access functionality  
+ * 
+ */
 public class DirectoryServiceLayer implements Serializable {
 	private DirectoryDAO directoryDAO;
 	

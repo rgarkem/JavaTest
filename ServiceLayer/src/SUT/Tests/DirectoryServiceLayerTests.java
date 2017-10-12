@@ -1,7 +1,5 @@
 package SUT.Tests;
 
-import static org.junit.Assert.*;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,10 +11,12 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.mockito.Mockito.*;
-
 import SUT.*;
 
+/**
+ * Unit tests for the extraction logic in DirectoryServiceLayer
+ * The DAO interface is used to mock interactions with the file system
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class DirectoryServiceLayerTests {
 
