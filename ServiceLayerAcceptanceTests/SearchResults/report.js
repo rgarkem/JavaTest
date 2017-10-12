@@ -12,6 +12,10 @@ formatter.feature({
     }
   ]
 });
+formatter.before({
+  "duration": 2744944440,
+  "status": "passed"
+});
 formatter.scenario({
   "line": 6,
   "name": "Title of your scenario",
@@ -55,14 +59,14 @@ formatter.match({
   "location": "VehicleColoursStepDefinitions.i_have_a_CSV_file_in_target_Directory()"
 });
 formatter.result({
-  "duration": 211332223,
+  "duration": 81754666,
   "status": "passed"
 });
 formatter.match({
   "location": "VehicleColoursStepDefinitions.i_extract_vehicle_details_from_the_file()"
 });
 formatter.result({
-  "duration": 4009551,
+  "duration": 765829,
   "status": "passed"
 });
 formatter.match({
@@ -75,21 +79,25 @@ formatter.match({
   "location": "VehicleColoursStepDefinitions.i_Navigate_to_the_website(String)"
 });
 formatter.result({
-  "duration": 7159311875,
+  "duration": 2298328479,
   "status": "passed"
 });
 formatter.match({
   "location": "VehicleColoursStepDefinitions.i_check_vehicle_colours_for_each_vehicle_in_file()"
 });
 formatter.result({
-  "duration": 2996806807,
+  "duration": 2961611811,
   "status": "passed"
 });
 formatter.match({
   "location": "VehicleColoursStepDefinitions.i_validate_that_colours_match_the_file_for_each_vehicle()"
 });
 formatter.result({
-  "duration": 722801,
+  "duration": 889389,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 736954944,
   "status": "passed"
 });
 });

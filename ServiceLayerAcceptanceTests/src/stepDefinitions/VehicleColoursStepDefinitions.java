@@ -1,9 +1,5 @@
 package stepDefinitions;
 
-import java.io.BufferedReader;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,6 +10,8 @@ import SUT.DirectoryDAOImpl;
 import SUT.DirectoryServiceLayer;
 import SUT.FileInformation;
 import SUT.VehicleInformation;
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -23,46 +21,53 @@ public class VehicleColoursStepDefinitions {
 	
 	private DirectoryServiceLayer directoryServiceLayer;
 	private FileInformation fileInformation;
+	private List<FileInformation> fileInformationList;
+	
 	private List<VehicleInformation> vehiclesListFromFile;
 	private List<VehicleInformation> vehiclesListFromSite;
 	private LandingPage landingPage;
 	private SearchPage searchPage;
 	private SearchResultsPage searchResultsPage;
 	
+	@Before
+	public void Setup() {
+		Browser.getDriver();
+	}
 	
-	@Given("^I have a CSV file in target Directory$")
-	public void i_have_a_CSV_file_in_target_Directory() throws Throwable {
+	@After
+	public void TearDown() {
+		Browser.Quit();
+	}
+	
+	@Given("^I have CSV or XLSX files in target Directory$")
+	public void i_have_CSV_or_XLSX_files_in_target_Directory() throws Throwable {
 		directoryServiceLayer = new DirectoryServiceLayer(new DirectoryDAOImpl());
 		List<FileInformation> fileList = directoryServiceLayer.GetFilesInDirectory();
 		List<FileInformation> filteredList = fileList.stream().filter(
-				f -> f.getExtension().toLowerCase().equals("csv"))
+				f -> f.getExtension().toLowerCase().equals("xlsx") || 
+				f.getExtension().toLowerCase().equals("csv"))
 				.collect(Collectors.toList());
 		Assert.assertFalse(filteredList.isEmpty());
-		fileInformation = filteredList.get(0);
+		//fileInformation = filteredList.get(0);
+		fileInformationList = filteredList;
 	}
 
-	@Given("^I extract vehicle details from the file$")
-	public void i_extract_vehicle_details_from_the_file() throws Throwable {
+	@Given("^I extract vehicle details from the files$")
+	public void i_extract_vehicle_details_from_the_files() throws Throwable {
 		vehiclesListFromFile = new ArrayList<VehicleInformation>();
 		
-		Path path = Paths.get(fileInformation.getFilePath());
-		try (BufferedReader br = Files.newBufferedReader(path)) {
-			String line;
-			boolean titleLine = true;
-			while ((line = br.readLine()) != null) {
-				if (titleLine) {
-					titleLine = false;
-					continue;
-				}
-				String[] lineData = line.split(",");
-				vehiclesListFromFile.add(new VehicleInformation() {{
-					setRegNo(lineData[0]);
-					setColour(lineData[1]);
-				}});
-			}
+		for (FileInformation info : fileInformationList) {
+			switch (info.getExtension().toLowerCase()) {
+			case "csv":
+				vehiclesListFromFile.addAll(FileUtil.readFromCsv(info));
+				break;
+			case "xlsx":
+				vehiclesListFromFile.addAll(FileUtil.readFromExcel(info));
+				break;
+			}			
 		}
 	}
-
+	
 	@When("^I Navigate to the website \"([^\"]*)\"$")
 	public void i_Navigate_to_the_website(String arg1) throws Throwable {
 	    landingPage = new LandingPage(Browser.getDriver());

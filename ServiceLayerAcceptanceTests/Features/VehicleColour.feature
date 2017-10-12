@@ -4,8 +4,8 @@ Feature: Validate Vehicle Colours from DVLA Site
 
 @tag1
 Scenario: Title of your scenario
-Given I have a CSV file in target Directory 
-	And I extract vehicle details from the file 
+Given I have CSV or XLSX files in target Directory 
+	And I extract vehicle details from the files 
 When I Navigate to the website "https://www.gov.uk/get-vehicle-information-from-dvla"
 	And I check vehicle colours for each vehicle in file
 Then I validate that colours match the file for each vehicle

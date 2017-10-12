@@ -9,7 +9,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions( 
 		features = "Features", 
 		glue = {"stepDefinitions"}, 
-		format = {"html:SearchResults"}, 
+		format = {"html:TestResults"}, 
 		dryRun = false)
 public class TestRunner {
 
